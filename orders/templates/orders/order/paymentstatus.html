@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<br><br>
+<h1>Thank you for Ordering with FoodSanta</h1>
+    <h1>Payment Status </h1>
+    <h2>For your oder id <strong>{{response.ORDERID}} </strong></h2>
+{% if response.RESPCODE == '01' %}
+<h3>Your order has been successfully completed.</h3>
+<h4>Transaction ID is : {{response.TXNID}}</h4>
+<h4>Transaction ammount is: {{response.TXNAMOUNT}}</h4>
+<h4>Transaction Date is: {{response.TXNDATE}}</h4>
+<h4>Transaction Status is: {{response.RESPMSG}}</h4>
+<h4>Transaction Gateway name is:{{response.GATEWAYNAME}}</h4>
+<h4>Transaction Bank name is:{{response.BANKNAME}}</h4>
+{% else %}
+<h4>Your order failed</h4>
+
+{% endif %}
+
+{% endblock %}

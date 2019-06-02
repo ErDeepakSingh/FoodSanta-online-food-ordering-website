@@ -1,0 +1,78 @@
+{% load staticfiles %}
+{% include 'FOODSANTA/css.html' %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-light bg-light;navbar navbar-dark bg-primary" >
+  <!--<img src="FoodSanta.jpg" alt="foodsanta image" width="50px">-->
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img class="mr-3" src="{% static 'images/FoodSanta.jpg' %}" alt="" width="48" height="48">
+  <a class="navbar-brand" href="#"><h1 class="mb-0 text-white lh-100">FoodSANTA</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'food_santa_home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about_us' %}">About us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'restaurant_home' %}">Restaurants</a>
+      </li>
+      <!--<li class="nav-item dropdown">-->
+        <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="True">-->
+          <!--Categories-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+          <!--<a class="dropdown-item" href="#">Indian</a>-->
+          <!--<a class="dropdown-item" href="#">Chinese</a>-->
+          <!--<div class="dropdown-divider"></div>-->
+          <!--<a class="dropdown-item" href="#">Italian</a>-->
+        <!--</div>-->
+      <!--</li>-->
+      <div class="navbar-nav active">
+        <a class="nav-item nav-link" href="{% url 'Blog_home' %}">Blog</a>
+            {% if user.is_authenticated %}
+
+            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                {% if user.is_vendor %}
+                <a class="nav-item nav-link" href="{% url 'add_restaurant' %}">Add Restaurant</a>
+                <a class="nav-item nav-link" href="{% url 'order_details' %}">Orders</a>
+                {% endif %}
+            {% else %}
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
+            {% endif %}
+        </div>
+    </ul>
+
+      {% with total_items=cart|length %}
+      {% if cart|length > 0 %}
+
+      <a class="nav-item  text-white active" href="{% url 'cart_detail' %}">
+      <i class="fas fa-shopping-cart btn btn-info bg-light text-info" style="font-size:40px;color:red" ></i><br>
+        {{ total_items }} item{{total_items|pluralize}},&#8377;{{ cart.get_total_price }}</a>
+      {% else %}
+    <a class="nav-item  text-white active" href="{% url 'cart_detail' %}">
+      <i class="fas fa-shopping-cart btn btn-info bg-light text-info" style="font-size:40px;color:red" ></i><br>
+      Cart Empty
+    </a>
+      {% endif %}
+      {% endwith %}
+    </div>
+</nav>
+<div class="nav-scroller bg-white shadow-sm">
+  <nav class="nav nav-underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="nav-item nav-link" href="{% url 'Blog_home' %}">Blog</a>
+    <a class="nav-link" href="#">
+      Friends
+      <span class="badge badge-pill bg-light align-text-bottom">27</span>
+    </a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="nav-link" href="#">Suggestions</a>
+    <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+  </nav>
+</div>

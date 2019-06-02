@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+<!DOCTYPE html>
+{% block content %}
+<br/><br/><br/>
+{% for item in cart.products.all %}
+<div class="col-sm-8 col-sm-offset-2">
+<table class="table">
+  <thead>
+  <th>Item</th>
+  <th>Price</th>
+  </thead>
+    <tfoot>
+    <tr>
+        <td></td>
+        <td>Total : {{cart.total}}</td>
+    </tr>
+    </tfoot>
+    <tr>
+    <td>{{item.food_title}}</td>
+    <td>{{item.food_price}}</td>
+
+</tr>
+
+</table>
+    </div>
+{% endfor %}
+{% endblock %}

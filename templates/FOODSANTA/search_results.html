@@ -1,0 +1,33 @@
+{% extends 'FOODSANTA/food_santa_home.html' %}
+{% load staticfiles %}
+{% block content %}
+<br><br>
+<div class="container"><h1>You searched for :{{ query }}</h1></div>
+ {% if foods %}
+{% for food in foods %}
+<div class="container">
+  <h1 class="my-4"><h2 class="card-title">{{food.food_title}}</h2>
+    <small><h3>{{food.food_cuisine}}</h3></small>
+  </h1>
+  <div class="row">
+
+    <div class="col-md-8">
+      <img src="{{food.food_image.url}}" width=100% height="300">
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="my-4"><h2 class="card-title">{{food.food_title}}</h2><br/>
+      <h6 class="card-text">{{food.food_Description}}</h6><br/>
+      <h4>Price :  {{food.food_price}} rs</h4><br/>
+
+    </div>
+  </div>
+
+</div>
+{% endfor %}
+
+{% else %}
+<h2>Oops No results for :{{ query }}</h2>
+{% endif %}
+
+{% endblock %}

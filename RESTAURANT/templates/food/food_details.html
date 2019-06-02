@@ -1,0 +1,78 @@
+{% extends 'FOODSANTA/food_santa_home.html' %}
+{% block content %}
+<style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+<div class="container">
+  <h1 class="my-4"><h2 class="card-title">{{food.food_title}}</h2>
+    <small><h5>Cuisine : {{food.food_cuisine}}</h5></small>
+  </h1>
+  <div class="row">
+
+    <div class="col-md-8">
+      <img src="{{food.food_image.url}}" width=100%">
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="my-4"><h2 class="card-title">{{food.food_title}}</h2><br/>
+      <h6 class="card-text">{{food.food_Description}}</h6><br/>
+      <h4>Price :  {{food.food_price}} rs</h4><br/>
+        <form action="{% url 'cart_add' food.id %}" method="post">
+{% csrf_token %}
+    {{ cartaddproductform }}<br/><br/><br/>
+    <input class='btn btn-primary' type="submit" value="Add to Cart">
+</form>
+
+    </div>
+  </div>
+
+</div>
+<div>
+</div>
+<hr/><br/><br/><br/>
+<div class="container">
+  <h3>Food Recommendations You must Try these  </h3>
+</div>
+
+  <main role="main">
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          {% for recommend in recommends %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                          <h2 class="display-5 text-center"><a href="{{recommend.pk}}">{{recommend.food_title}}</a></h2>
+                <h3 class="display-5 text-center">{{recommend.food_cuisine}}</h3>
+              <img class="card-isg-top" src="{{recommend.food_image.url}}" width="100%" height="200px">
+              <div class="card-body">
+                <p class="card-text">{{recommend.short_desc}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+                    <a href="{{recommend.pk}}"><button type="button" class="btn btn-sm btn-outline-secondary">View Details</button></a>
+                  </div>
+                  <small class="text-muted"><h6>Price : {{recommend.food_price}} rs.</h6></small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+{% endblock %}

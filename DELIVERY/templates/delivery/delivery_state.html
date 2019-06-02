@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delivery_state</title>
+</head>
+<body>
+<h1>Delivery state</h1>
+<select>
+     <option value="">~~select district~~</option>
+    {% for district in districts %}
+    <option value="{{district}}">{{district}}</option>
+    {% endfor %}
+</select>
+</body>
+</html>

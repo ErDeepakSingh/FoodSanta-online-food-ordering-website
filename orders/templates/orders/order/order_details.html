@@ -1,0 +1,32 @@
+{% extends 'FOODSANTA/food_santa_home.html' %}
+
+{% load static %}
+{% block content %}
+
+
+
+<div class="container">
+<h1>Current Recieved Order Details</h1>
+<table class="table">
+        <thead>
+            <tr>
+                <th>Food Item</th>
+                <th>Cuisine</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+
+            <tr>
+                <td><h4>{{ order.product.food_title }}</h4></td>
+                <td>{{ order.product.food_cuisine }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.food_price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

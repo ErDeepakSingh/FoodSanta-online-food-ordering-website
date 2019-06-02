@@ -1,0 +1,95 @@
+    .caro-wrapper{
+  height:400px;
+  position:relative;
+  width:1450px;
+  margin:0 auto;
+}
+
+p{
+color:white;
+}
+h2{
+color:white;
+}
+.caro-itm{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:25px 50px;
+  opacity:0;
+  transition: all 0.5s ease-in-out;
+}
+.arow{
+  border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+}
+
+.arow-prev{
+  left:-30px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%) rotate(135deg);
+}
+
+.arow-next{
+    right:-30px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%) rotate(-45deg);
+  }
+
+.light{
+  color:white;
+}
+
+@media (max-width: 720px) {
+      .arrow, .light .arrow {
+        background-size: 20px;
+        background-position: 20px 100%;
+      }
+    }
+
+
+/*Select every element*/
+[id^="itm"] {
+    display: none;
+  }
+
+.itm-1 {
+    z-index: 2;
+    opacity: 1;
+  background:url('fullfood.jpg');
+  background-size:cover;
+  width:1450px;
+  height:500px;
+  }
+.itm-2{
+  background:url('pizza1.jpg');
+   background-size:cover;
+   width:1450px;
+   height:500px;
+}
+.itm-3{
+  background:url('biryani1.jpg');
+   background-size:cover;
+   width:1450px;
+   height:500px;
+}
+
+
+*:target ~ .itm-1 {
+    opacity: 0;
+  }
+
+#itm-1:target ~ .itm-1 {
+    opacity: 1;
+  }
+
+#itm-2:target ~ .itm-2, #itm-3:target ~ .itm-3 {
+    z-index: 3;
+    opacity: 1;
+  }

@@ -1,0 +1,59 @@
+{% extends 'FOODSANTA/food_santa_home.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Your shopping cart</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Food Item<  /th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit Dish price</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ item.image.url }}">{{ item.image}}
+                    </a>
+                </td>
+                <td><h4>{{ item.name }}</h4></td>
+                <td>
+                    <form action="{% url 'cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input class="btn btn-primary" type="submit" value="Update">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td><a href="{% url 'cart_remove' product.id %}">Remove</a></td>
+                <td class="num">&#8377;{{ item.price }}</td>
+                <td class="num">&#8377;{{ item.total_price }}</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td><h6>Total</h6></td>
+            <td colspan="3"></td>
+            <td class="num">&#8377;{{ cart.get_total_price }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+<input type="hidden" name="ammount" id="ammount">
+    <p class="text-right">
+        <a href="{% url 'restaurant_home' %}"><button type="button" class="btn btn-secondary">Continue shopping</button></a>
+        <a href="{% url 'order_create' %}"><button type="button" class="btn btn-primary">Checkout</button></a>
+
+    </p>
+    </div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+{% endblock %}

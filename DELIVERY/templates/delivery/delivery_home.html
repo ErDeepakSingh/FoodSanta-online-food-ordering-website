@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title> delivery</title>
+</head>
+<body>
+
+<h1>Delivery Home</h1>
+<label for="name">Name: </label>
+<input id="name" type="text" placeholder="Enter name">
+<h3>States</h3>
+<select onchange="abc(this.value)">
+    <option value="">--select state--</option>
+    {% for state in states %}
+    <option value="{{state}}">{{state}}</option>
+    {% endfor %}
+</select>
+
+<h3>Districts</h3>
+<select id="add_districts">
+    <option value="">~~select district~~</option>
+</select>
+<script>
+    function abc(state_name){
+    alert(state_name+"  Selected");
+    $.ajax({
+    //url: '127.0.0.1:8000/hello',
+    url: "{% url 'delivery_state' %}",
+    type: 'get', // This is the default though, you don't actually need to always mention it
+    data: {'state_name':state_name},
+    success: function(data) {
+        //alert(data);
+        document.getElementById('add_districts').innerHTML='';
+        document.getElementById('add_districts').innerHTML=data;
+    },
+    failure: function(data) {
+        alert('Got an error dude');
+    }
+});
+    }
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+6
