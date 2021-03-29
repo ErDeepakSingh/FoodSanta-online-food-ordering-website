@@ -34,7 +34,7 @@ psycopg2==2.7.7
 ptpython==2.0.4
 ptyprocess==0.5.1
 pycryptodome==3.8.1
-Pygments==2.4.0
+Pygments==2.7.4
 pyttsx3==2.7
 pytz==2018.9
 requests==2.21.0
