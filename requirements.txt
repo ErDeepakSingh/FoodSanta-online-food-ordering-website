@@ -27,7 +27,7 @@ parso==0.4.0
 pathlib2==2.1.0
 pexpect==4.2.1
 pickleshare==0.7.4
-Pillow==5.4.1
+Pillow==8.3.2
 Pillow-PIL==0.1.dev0
 prompt-toolkit==2.0.9
 psycopg2==2.7.7
